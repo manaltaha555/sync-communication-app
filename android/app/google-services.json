@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "760448700169",
+    "firebase_url": "https://sync-7a4b8-default-rtdb.firebaseio.com",
+    "project_id": "sync-7a4b8",
+    "storage_bucket": "sync-7a4b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760448700169:android:87d6f4c771aedf4ed88dd8",
+        "android_client_info": {
+          "package_name": "com.example.sync_communication_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760448700169-29n33c10pke5ehgcgfcue0d6losaf1u2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sync_communication_app",
+            "certificate_hash": "a5a57c35d7e540835ebd98b960f11bea6abb2f0c"
+          }
+        },
+        {
+          "client_id": "760448700169-6kms24akg9oubkret4rvfm7analg7qna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjkqXh9EK_aDrQjC_y1uXL8oucBS6YMJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760448700169-6kms24akg9oubkret4rvfm7analg7qna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
