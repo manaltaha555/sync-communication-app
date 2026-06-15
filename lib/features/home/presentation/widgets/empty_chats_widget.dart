@@ -13,7 +13,7 @@ class EmptyChatsWidget extends StatelessWidget {
         ShaderMask(
           shaderCallback: (bounds) =>
               context.mainLinearGradient.createShader(bounds),
-          child: const Icon(Iconsax.messages, size: 64),
+          child: const Icon(Iconsax.messages, size: 64, color: Colors.white),
         ),
         SizedBox(height: 8),
         Text(

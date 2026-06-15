@@ -119,7 +119,6 @@ class _SignupPageState extends State<SignupPage> {
                       isObsecure
                           ? Icons.visibility_off_rounded
                           : Icons.remove_red_eye_rounded,
-                      color: context.scheme.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
                   obscure: isObsecure,
@@ -139,8 +138,8 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       icon: Icon(
                         isConfirmsObsecure
-                            ? Icons.remove_red_eye_rounded
-                            : Icons.visibility_off_rounded,
+                            ? Icons.visibility_off_rounded
+                            : Icons.remove_red_eye_rounded,
                       ),
                     ),
                     obscure: isConfirmsObsecure,

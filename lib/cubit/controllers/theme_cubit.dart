@@ -16,9 +16,7 @@ class ThemeCubit extends Cubit<ThemeState> {
   /// toggle + save
   Future<void> toggleTheme() async {
     final newValue = !state.isDark;
-
     emit(state.copyWith(isDark: newValue));
-
     await _themeService.toggleTheme(newValue);
   }
 }

@@ -6,9 +6,11 @@ class SearchInputTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onChanged,
+    required this.onPressed,
   });
   final TextEditingController controller;
   final void Function(String)? onChanged;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -25,43 +27,24 @@ class SearchInputTextField extends StatelessWidget {
         ),
         suffixIcon: controller.text.isNotEmpty
             ? IconButton(
-                icon: Icon(
-                  Icons.clear,
-                  color: context.scheme.onSurfaceVariant,
-                ),
+                icon: Icon(Icons.clear, color: context.scheme.onSurfaceVariant),
                 onPressed: () => controller.clear(),
               )
             : null,
-        prefixIcon: Icon(
-          Icons.search,
-          color: context.scheme.onSurfaceVariant,
+        prefixIcon: IconButton(
+          icon: Icon(Icons.search, color: context.scheme.onSurfaceVariant),
+          onPressed: onPressed,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide(
-            color: context.scheme.outline,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: context.scheme.outline, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: BorderSide(
-            color: context.scheme.outline,
-            width: 1,
-          ),
+          borderSide: BorderSide(color: context.scheme.outline, width: 1),
         ),
         filled: true,
-      // fillColor:AppDarkColors.cardBackground,
       ),
     );
   }
 }
-        // color: isDark
-        //     ? Colors.white.withValues(alpha: 0.05)
-        //     : Colors.white.withValues(alpha: 0.85),
-        // borderRadius: BorderRadius.circular(20),
-        // border: Border.all(
-        //   color: isDark
-        //       ? Colors.white.withValues(alpha: 0.08)
-        //       : Colors.black.withValues(alpha: 0.06),
-        // ),

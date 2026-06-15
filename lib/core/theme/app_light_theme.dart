@@ -3,7 +3,6 @@ import 'package:sync_communication_app/core/theme/app_colors.dart';
 
 class AppLightTheme {
   static ThemeData get lightheme => ThemeData(
-    // cardColor: AppLightColors.surfaceColor,
     primaryColor: AppColors.primary,
 
     colorScheme: AppLightColors.colorScheme,
@@ -15,14 +14,14 @@ class AppLightTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor:AppLightColors.colorScheme.surfaceContainerHighest,
-      errorStyle: TextStyle(color: AppLightColors.colorScheme.onError),
-
-      hintStyle: TextStyle(
-        // color: scheme.onSurface,
+      fillColor: AppLightColors.colorScheme.surfaceContainerHighest,
+      errorStyle: TextStyle(
+        color: AppLightColors.colorScheme.onError,
         fontFamily: 'Poppins',
-        fontSize: 16,
+        fontSize: 12,
       ),
+
+      hintStyle: TextStyle(fontFamily: 'Poppins', fontSize: 16),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
@@ -40,7 +39,7 @@ class AppLightTheme {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
-          color: AppDarkColors.colorScheme.outline,
+          color: AppLightColors.colorScheme.outline,
           width: 1,
         ),
       ),
@@ -60,24 +59,23 @@ class AppLightTheme {
       ),
     ),
 
-
     textTheme: TextTheme(
       displayLarge: TextStyle(
         color: AppLightColors.textPrimary,
-        fontSize: 36,
+        fontSize: 34,
         fontWeight: FontWeight.w900,
         fontFamily: 'Poppins',
         letterSpacing: 1.5,
       ),
       headlineLarge: TextStyle(
         color: AppLightColors.textPrimary,
-        fontSize: 28,
+        fontSize: 26,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
       ),
       headlineMedium: TextStyle(
         color: AppLightColors.textPrimary,
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500,
       ),
@@ -85,44 +83,44 @@ class AppLightTheme {
         color: AppLightColors.textPrimary,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
-        fontSize: 14,
+        fontSize: 12,
       ),
       titleLarge: TextStyle(
         color: AppLightColors.textPrimary,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w700,
       ),
       titleMedium: TextStyle(
         color: AppLightColors.textPrimary,
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
       ),
       labelSmall: TextStyle(
         color: AppLightColors.textPrimary.withValues(alpha: 0.5),
         fontFamily: 'Poppins',
-        fontSize: 13,
+        fontSize: 12,
       ),
       labelMedium: TextStyle(
         color: AppColors.primary,
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Poppins',
       ),
-      bodyLarge:  TextStyle(
+      bodyLarge: TextStyle(
         color: AppLightColors.textPrimary.withValues(alpha: 0.7),
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Poppins',
-        height: 1.4
+        height: 1.4,
       ),
       bodyMedium: TextStyle(
         color: AppLightColors.textPrimary..withValues(alpha: 0.7),
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: 'Poppins',
       ),
       bodySmall: TextStyle(
         color: AppLightColors.textPrimary.withValues(alpha: 0.9),
-        fontSize: 8,
+        fontSize: 10,
         fontFamily: 'Poppins',
       ),
     ),

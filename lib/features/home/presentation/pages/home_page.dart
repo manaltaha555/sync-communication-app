@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final user = context.read<UserCubit>().state.user;
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -44,12 +43,9 @@ class _HomePageState extends State<HomePage>
       },
       child: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            sliver: SliverPersistentHeader(
+         SliverPersistentHeader(
               pinned: true,
-              delegate: CustomHeader(user: user),
-            ),
+              delegate: CustomHeader(),
           ),
 
           SliverPadding(
@@ -99,7 +95,7 @@ class _HomePageState extends State<HomePage>
                                 scrollDirection: Axis.horizontal,
                                 itemCount: state.users.length,
                                 separatorBuilder: (_, _) =>
-                                    const SizedBox(width: 12),
+                                    const SizedBox(width: 14),
                                 itemBuilder: (context, index) {
                                   return ActiveUserWidget(
                                     activeUser: state.users[index],

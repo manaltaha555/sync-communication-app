@@ -20,9 +20,9 @@ class FirebaseFirestoreService {
         'uid': uid,
         'username': username,
         'email': email,
-        'emoji': '🚀',
+        'emoji': '🧑',
       });
-      return UserModel(uid: uid, username: username, email: email, emoji: '🚀');
+      return UserModel(uid: uid, username: username, email: email, emoji: '🧑');
     } catch (e, stackTrace) {
       LoggerService.logError(
         "Error creating new user in Firestore",

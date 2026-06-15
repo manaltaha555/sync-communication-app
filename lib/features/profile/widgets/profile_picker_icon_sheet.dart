@@ -11,29 +11,35 @@ class IconPickerSheet extends StatefulWidget {
 
   final List<String> icons = [
     '🧑',
-    '🚶🏽‍♂️',
+    '👽',
+    '👻',
     '🧑‍💻',
     '🧑‍🎨',
+    '🕵🏽‍♀️',
+    '🥼',
+    '💪🏽',
     '🦊',
     '🐺',
     '🐱',
     '🐸',
     '🐼',
     '🦋',
-    '⚡',
+    '🤑',
+    '😜',
+    '🥰',
+    '😴',
+    '🤭',
+    '😎',
+    '🤔',
+    '🤡',
     '🔥',
     '✨',
     '🌙',
     '🌊',
-    '🎯',
     '🎮',
     '🎵',
-    '❤️',
-    '💜',
-    '✅',
-    '🤭',
-    '😎',
-    '🤔',
+    '✈️',
+    '🚀'
   ];
 
   @override
@@ -52,7 +58,6 @@ class _IconPickerSheetState extends State<IconPickerSheet> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocListener<UserCubit, UserState>(
       listener: (context, state) {
         if (state.isUploadingEmoji && state.isLoading) {
@@ -71,9 +76,7 @@ class _IconPickerSheetState extends State<IconPickerSheet> {
         decoration: BoxDecoration(
           color: context.scheme.scrim,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-          border: Border.all(
-            color: context.cellBorder,
-          ),
+          border: Border.all(color: context.cellBorder),
         ),
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
         child: Column(
@@ -103,7 +106,7 @@ class _IconPickerSheetState extends State<IconPickerSheet> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: context.mainLinearGradient,
-                boxShadow: [context.profilePickerShadow]
+                boxShadow: [context.profilePickerShadow],
               ),
               child: Center(
                 child: Text(
@@ -134,12 +137,12 @@ class _IconPickerSheetState extends State<IconPickerSheet> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14),
-                      gradient: isSelected
-                          ? context.mainLinearGradient
-                          : null,
+                      gradient: isSelected ? context.mainLinearGradient : null,
                       color: isSelected ? null : context.cellBg,
                       border: Border.all(
-                        color: isSelected ? Colors.transparent :context.cellBorder,
+                        color: isSelected
+                            ? Colors.transparent
+                            : context.cellBorder,
                         width: 1,
                       ),
                     ),

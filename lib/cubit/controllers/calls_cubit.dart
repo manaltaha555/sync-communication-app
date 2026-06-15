@@ -11,6 +11,7 @@ class CallsCubit extends Cubit<CallsState> {
       FirebaseFirestoreService.instance;
 
   Future<void> getUserCalls(String userId) async {
+    if (isClosed) return;
     emit(const CallsLoading());
     try {
       final callTiles = await CallsService.instance.getUserCalls(userId);
@@ -21,13 +22,15 @@ class CallsCubit extends Cubit<CallsState> {
           participants: [tile.senderId, tile.recieverId],
           currentUserId: userId,
         );
+         if (isClosed) return;
         tilesWithProfiles.add(tile.copyWith(recieverName: otherUser.username));
       }
 
-      final latestTiles = tilesWithProfiles.take(30).toList();
-      emit(CallsLoaded(latestTiles));
+      if (isClosed) return;
+      emit(CallsLoaded( tilesWithProfiles));
     } catch (e, stackTrace) {
       LoggerService.logError("CallsCubit.getUserCalls failed", e, stackTrace);
+      if (isClosed) return;
       emit(CallsError(e.toString()));
     }
   }
@@ -37,6 +40,7 @@ class CallsCubit extends Cubit<CallsState> {
       await CallsService.instance.addCall(callTile);
     } catch (e, stackTrace) {
       LoggerService.logError("CallsCubit.addCall failed", e, stackTrace);
+      if (isClosed) return;
       emit(CallsError(e.toString()));
     }
   }

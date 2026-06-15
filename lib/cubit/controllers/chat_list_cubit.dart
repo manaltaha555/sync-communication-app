@@ -37,6 +37,7 @@ class ChatListCubit extends Cubit<ChatListState> {
 
     _chatsSub = _chatService.getUserChats(userId).listen((chatTiles) async {
       try {
+        if (isClosed) return;
         // Step 1: fetch Firestore profiles for other users
         final List<ChatTileModel> tilesWithProfiles = [];
 
@@ -45,6 +46,7 @@ class ChatListCubit extends Cubit<ChatListState> {
             participants: tile.chat.participants,
             currentUserId: userId,
           );
+           if (isClosed) return;
           tilesWithProfiles.add(
             ChatTileModel(chat: tile.chat, otherUser: otherUser),
           );
@@ -76,6 +78,7 @@ class ChatListCubit extends Cubit<ChatListState> {
           _presenceSubs[uid] = _activeService.watchUserPresence(uid).listen((
             presence,
           ) {
+             if (isClosed) return;
             _presenceCache[uid] =
                 presence; // update cache when their status changes
             _emitMerged(); // rebuild and emit the full list

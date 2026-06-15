@@ -110,7 +110,6 @@ class _LoginPageState extends State<LoginPage> {
                       isObsecure
                           ? Icons.visibility_off_rounded
                           : Icons.remove_red_eye_rounded,
-                      color: context.scheme.onSurface.withValues(alpha: 0.5),
                     ),
                   ),
                   obscure: isObsecure,

@@ -65,6 +65,7 @@ class ProfileIconPicker extends StatelessWidget {
               child: const Icon(
                 Icons.emoji_emotions_rounded,
                 size: 16,
+                color: Colors.white
               ),
             ),
           ),

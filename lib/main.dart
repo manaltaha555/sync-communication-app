@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sync_communication_app/app_initializer.dart';
 import 'package:sync_communication_app/features/main%20navigation/presentation/pages/main_navigation.dart';
 import 'package:sync_communication_app/splash_screen.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 import 'core/core.dart';
 import 'cubit/cubit.dart';
 
 void main() async {
   await InitializeApp.initialize();
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => PresenceCubit()),
-        BlocProvider(
- create: (context) => ThemeCubit()..loadFromBox(),          //* the initial value should be the value of the local database and if there isn't then it will be  the default value of the device
-        ),
-        BlocProvider(create: (context) => UserCubit()),
-        BlocProvider(create: (context) => ZegoCubit()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(AppKey.navigatorKey);
+
+  ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI([
+    ZegoUIKitSignalingPlugin(),
+  ]);
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => PresenceCubit()),
+          BlocProvider(
+            create: (context) => ThemeCubit()
+              ..loadFromBox(), //* the initial value should be the value of the local database and if there isn't then it will be  the default value of the device
+          ),
+          BlocProvider(create: (context) => UserCubit()),
+          BlocProvider(create: (context) => ZegoCubit()),
+        ],
+        child: const MyApp(),
+      ),
+    );
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -45,9 +60,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         presenceCubit.onResumed();
         break;
       case AppLifecycleState.paused:
-      case AppLifecycleState.inactive:
         presenceCubit.onPaused();
         break;
+      case AppLifecycleState.inactive:
       case AppLifecycleState.detached:
       case AppLifecycleState.hidden:
         break;
@@ -78,9 +93,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           theme: state.isDark
               ? AppDarkTheme.darkTheme
               : AppLightTheme.lightheme,
+          builder: (context, child) {
+            final mediaQuery = MediaQuery.of(context);
+            return MediaQuery(
+              data: mediaQuery.copyWith(textScaler: TextScaler.noScaling),
+              child: child!,
+            );
+          },
           home: const SplashScreen(),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: AppRoutes.splash,
+          // initialRoute: AppRoutes.splash,
         );
       },
     );

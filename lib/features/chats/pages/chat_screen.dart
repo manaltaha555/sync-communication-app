@@ -112,7 +112,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
                             child: Text(
-                              "Last seen: ${DateFormat('dd/MM/yyyy  hh:mm a').format(widget.otherUser.lastSeen!)}",
+                              "Last seen ${DateFormat('dd/MM/yyyy  hh:mm a').format(widget.otherUser.lastSeen!)}",
                               style: context.textTheme.bodyMedium!.copyWith(
                                 color: context.scheme.onSurface.withValues(
                                   alpha: 0.5,
@@ -137,9 +137,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     IconButton(
                       icon: const Icon(Icons.call),
                       onPressed: () async {
-                        // LoggerService.logInfo(
-                        //   "Initiating voice call with userId: ${widget.otherUser.uid}, userName: ${widget.otherUser.username}",
-                        // );
                         await context.read<ZegoCubit>().startVoiceCall(
                           targetUserId: widget.otherUser.uid,
                           targetUserName: widget.otherUser.username,
@@ -167,14 +164,12 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListView.builder(
                       reverse: true,
                       itemCount: state.messages.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: CustomMessageBubble(
+                      itemBuilder: (context, index) => 
+                        CustomMessageBubble(
                           message: state.messages[index].text,
                           isSender: userId == state.messages[index].senderId,
                           time: state.messages[index].createdAt,
                         ),
-                      ),
                     );
                   } else {
                     return const Center(child: Text("Failed to load messages"));

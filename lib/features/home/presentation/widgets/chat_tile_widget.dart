@@ -27,7 +27,7 @@ class ChatTileWidget extends StatelessWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: context.scheme.surface,

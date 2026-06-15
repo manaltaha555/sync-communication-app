@@ -33,7 +33,7 @@ class ActiveUserWidget extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           SizedBox(
-            width: 60,
+            width: 70,
             child: Text(
               activeUser.username,
               maxLines: 2,

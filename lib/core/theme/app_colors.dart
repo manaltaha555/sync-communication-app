@@ -116,10 +116,7 @@ class AppDarkColors {
   static final LinearGradient navBarGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [
-      Colors.white.withValues(alpha: 0.11),
-      Colors.white.withValues(alpha: 0.06),
-    ],
+    colors: [Color(0xFF1B1634), Color(0xFF15112B)],
   );
   // ColorScheme
   static ColorScheme colorScheme = ColorScheme(
@@ -202,10 +199,7 @@ class AppLightColors {
   static final LinearGradient navBarGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [
-      const Color(0xFF64748B).withValues(alpha: 0.12),
-      const Color(0xFF64748B).withValues(alpha: 0.06),
-    ],
+    colors: [Color(0xFFF4F6FB), Color(0xFFE9EDF5)],
   );
 
   // ColorScheme
@@ -242,7 +236,7 @@ class AppLightColors {
     onTertiaryContainer: AppColors.success,
 
     error: AppColors.error,
-    onError: Colors.white,
+    onError: AppColors.error,
 
     errorContainer: AppColors.error.withValues(alpha: 0.12),
     onErrorContainer: AppColors.error,

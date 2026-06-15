@@ -13,7 +13,7 @@ class ActiveUserSkeleton extends StatelessWidget {
       period: const Duration(milliseconds: 1200),
       child: Container(
         width: 70,
-        margin: EdgeInsets.only(right: 10),
+        margin: EdgeInsets.only(right: 14),
         child: Column(
           children: [
             Container(

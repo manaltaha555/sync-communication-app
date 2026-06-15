@@ -24,7 +24,7 @@ class CustomMessageBubble extends StatelessWidget {
           maxWidth: MediaQuery.of(context).size.width * 0.75,
         ),
 
-        margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+        margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 12),
 
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
 

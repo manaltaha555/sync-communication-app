@@ -1,7 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:sync_communication_app/core/core.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
+
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI([
+    ZegoUIKitSignalingPlugin(),
+  ]);
+  LoggerService.logInfo("background message");
+}
 
 class ZegoService {
   ZegoService._();
@@ -10,14 +24,26 @@ class ZegoService {
 
   Future<void> init({required String userId, required String userName}) async {
     try {
-      await FirebaseMessaging.instance.requestPermission();
-      ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(
-        AppKey.navigatorKey,
+      final settings = await FirebaseMessaging.instance.requestPermission();
+      LoggerService.logInfo(
+        "Notification Permission: ${settings.authorizationStatus}",
       );
 
-      ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI([
-        ZegoUIKitSignalingPlugin(),
-      ]);
+      final token = await FirebaseMessaging.instance.getToken();
+      LoggerService.logInfo("FCM Token: $token");
+
+      final overlayGranted = await Permission.systemAlertWindow.isGranted;
+      LoggerService.logInfo(
+        "Overlay Permission (before request): $overlayGranted",
+      );
+
+      if (!overlayGranted) {
+        await Permission.systemAlertWindow
+            .request(); // opens settings, returns immediately
+        LoggerService.logInfo(
+          "Overlay Permission requested — user sent to settings",
+        );
+      }
 
       await ZegoUIKitPrebuiltCallInvitationService().init(
         appID: 1019513980,
@@ -33,6 +59,8 @@ class ZegoService {
           return ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
         },
       );
+
+      LoggerService.logInfo("ZegoService initialized for user: $userId");
     } catch (e, stackTrace) {
       LoggerService.logError('ZegoService.init failed', e, stackTrace);
       rethrow;

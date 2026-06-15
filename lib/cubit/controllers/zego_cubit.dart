@@ -20,9 +20,13 @@ class ZegoCubit extends Cubit<ZegoState> {
     emit(state.copyWith(status: ZegoStatus.initializing));
     try {
       await ZegoService.instance.init(userId: userId, userName: userName);
+          if (isClosed) return;
+
       emit(state.copyWith(status: ZegoStatus.ready));
     } catch (e, stackTrace) {
       LoggerService.logError('ZegoCubit.initCall failed', e, stackTrace);
+          if (isClosed) return;
+
       emit(
         state.copyWith(status: ZegoStatus.error, errorMessage: e.toString()),
       );
@@ -32,6 +36,8 @@ class ZegoCubit extends Cubit<ZegoState> {
   Future<void> unInitCall() async {
     try {
       await ZegoService.instance.unInit();
+          if (isClosed) return;
+
       emit(const ZegoState()); // reset to idle
     } catch (e, stackTrace) {
       LoggerService.logError('ZegoCubit.unInitCall failed', e, stackTrace);
@@ -52,6 +58,8 @@ class ZegoCubit extends Cubit<ZegoState> {
         targetUserId: targetUserId,
         targetUserName: targetUserName,
       );
+          if (isClosed) return;
+
       emit(state.copyWith(status: ZegoStatus.ready));
       //   ZegoService.instance.listenToConnectionState(
       //   onStateChanged: (isConnected) {

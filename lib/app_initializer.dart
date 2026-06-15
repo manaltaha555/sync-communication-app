@@ -1,9 +1,11 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:sync_communication_app/data/models/user_model.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sync_communication_app/services/zego_service.dart';
 
 class InitializeApp {
   static Future<void> initialize() async {
@@ -20,5 +22,6 @@ class InitializeApp {
       serverClientId:
           "760448700169-6kms24akg9oubkret4rvfm7analg7qna.apps.googleusercontent.com",
     );
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler); // ADD THIS
   }
 }

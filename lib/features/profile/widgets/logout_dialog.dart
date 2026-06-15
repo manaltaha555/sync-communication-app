@@ -20,7 +20,9 @@ class LogoutDialog extends StatelessWidget {
           AppSnackBar.show(state.message);
         }
         if (state is AuthLogout) {
-            LoggerService.logInfo("PresenceCubit state at logout: ${context.read<PresenceCubit>().state}");
+          LoggerService.logInfo(
+            "PresenceCubit state at logout: ${context.read<PresenceCubit>().state}",
+          );
           context.read<PresenceCubit>().deactivate();
           context.read<UserCubit>().clearUser();
           context.read<ZegoCubit>().unInitCall();
@@ -45,17 +47,22 @@ class LogoutDialog extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             child: Text(
               'Cancel',
-              style: TextStyle(color: context.handleColor),
+              style: context.textTheme.labelMedium!.copyWith(
+                color: context.handleColor,
+                fontWeight: FontWeight.w500,
+              ),
+              // style: TextStyle(color: context.handleColor),
             ),
           ),
           TextButton(
-            onPressed: () async{
+            onPressed: () async {
               context.read<AuthCubit>().logout();
             },
             child: Text(
               'Logout',
-              style: context.textTheme.bodyMedium!.copyWith(
+              style: context.textTheme.labelMedium!.copyWith(
                 color: context.scheme.secondary,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

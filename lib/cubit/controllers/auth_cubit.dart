@@ -48,17 +48,22 @@ class AuthCubit extends Cubit<AuthState> {
           username: credential.user!.displayName ?? "Unknown",
           email: credential.user!.email ?? "",
         );
+        if (isClosed) return;
         emit(AuthSuccess(newUser));
       } else {
+        if (isClosed) return;
         emit(AuthSuccess(userModel));
       }
     } on SocketException {
+      if (isClosed) return;
       emit(AuthError("No internet connection"));
     } catch (e) {
       if (e.toString().contains('Google sign in was canceled')) {
+        if (isClosed) return;
         emit(AuthInitial());
         return;
       }
+      if (isClosed) return;
       emit(AuthError(e.toString()));
     }
   }
@@ -80,11 +85,13 @@ class AuthCubit extends Cubit<AuthState> {
         uid: credential.user!.uid,
         username: username,
       );
-
+      if (isClosed) return;
       emit(AuthSuccess(userModel));
     } on SocketException {
+      if (isClosed) return;
       emit(AuthError("No internet connection"));
     } catch (e) {
+      if (isClosed) return;
       emit(AuthError(e.toString()));
     }
   }
@@ -94,11 +101,13 @@ class AuthCubit extends Cubit<AuthState> {
     await Future.delayed(Duration(milliseconds: 300));
     try {
       await _authService.logout();
-      
+      if (isClosed) return;
       emit(AuthLogout());
     } on SocketException {
+      if (isClosed) return;
       emit(AuthError("No internet connection"));
     } catch (e) {
+      if (isClosed) return;
       emit(AuthError(e.toString()));
     }
   }

@@ -25,6 +25,9 @@ class _CallsPageState extends State<CallsPage>
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      if (!mounted) return;
+
       userId = context.read<UserCubit>().state.user!.uid;
       context.read<CallsCubit>().getUserCalls(userId);
     });
@@ -46,8 +49,8 @@ class _CallsPageState extends State<CallsPage>
     return type == CallType.video ? Icons.videocam_rounded : Icons.call_rounded;
   }
 
-  Color _statusColor(bool isIncoming) {
-    return isIncoming ? Colors.greenAccent : Colors.blueAccent;
+  Color _statusColor(bool isIncoming, BuildContext context) {
+    return isIncoming ? context.scheme.tertiary : Colors.blueAccent;
   }
 
   IconData _statusIcon(bool isIncoming) {
@@ -168,17 +171,17 @@ class _CallsPageState extends State<CallsPage>
                               borderRadius: BorderRadius.circular(16),
                                         border: Border.all(color: context.scheme.outline, width: 1.5),
 
-                              boxShadow: [
-                                BoxShadow(
-                                  color: context.scheme.shadow,
-                                  blurRadius: 20,
-                                  offset: const Offset(0, -4),
-                                ),
-                              ],
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: context.scheme.shadow,
+                              //     blurRadius: 20,
+                              //     offset: const Offset(0, -4),
+                              //   ),
+                              // ],
                             ),
                             child: ListTile(
                               contentPadding: EdgeInsets.symmetric(
-                                horizontal: 10,
+                                horizontal: 8,
                               ),
                               leading: Container(
                                 width: 46,
@@ -209,6 +212,7 @@ class _CallsPageState extends State<CallsPage>
                                   borderRadius: BorderRadius.circular(16),
                                   color: _statusColor(
                                     isIncoming,
+                                    context
                                   ).withValues(alpha: 0.15),
                                 ),
                                 child: Row(
@@ -217,13 +221,13 @@ class _CallsPageState extends State<CallsPage>
                                     Icon(
                                       _statusIcon(isIncoming),
                                       size: 16,
-                                      color: _statusColor(isIncoming),
+                                      color: _statusColor(isIncoming, context),
                                     ),
                                     const SizedBox(width: 6),
                                     Text(
                                       isIncoming ? "Incoming" : "Outgoing",
                                       style: TextStyle(
-                                        color: _statusColor(isIncoming),
+                                        color: _statusColor(isIncoming, context),
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12,
                                       ),

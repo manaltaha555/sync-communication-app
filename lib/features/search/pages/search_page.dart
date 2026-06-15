@@ -73,6 +73,12 @@ class _SearchPageState extends State<SearchPage>
                     child: SearchInputTextField(
                       controller: _controller,
                       onChanged: (value) => _onChanged(value, userId!),
+                      onPressed: () {
+                        context.read<ChatListCubit>().searchUsers(
+                          query: _controller.text,
+                          currentUserId: userId ?? "" ,
+                        );
+                      },
                     ),
                   ),
                 ],

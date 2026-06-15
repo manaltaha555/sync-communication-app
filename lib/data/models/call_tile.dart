@@ -27,9 +27,9 @@ class CallTile {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(String docRefId) {
     return {
-      'callId': callId,
+      'callId': docRefId,
       'callType': callType == CallType.video ? 'video' : 'voice',
       'participants': [senderId, recieverId],
       'timestamp': timestamp.toIso8601String(),

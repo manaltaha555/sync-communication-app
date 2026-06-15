@@ -18,7 +18,6 @@ class ActiveCubit extends Cubit<ActiveState> {
 
   ActiveCubit() : super(ActiveInitial());
 
-
   void watchActiveUsers(String currentUid) {
     emit(ActiveUsersLoading());
     _onlineUidsSub?.cancel();
@@ -26,14 +25,13 @@ class ActiveCubit extends Cubit<ActiveState> {
     _onlineUidsSub = _activeService.watchOnlineUids().listen((
       presenceList,
     ) async {
-      // emit(ActiveUsersLoading());
-    // await Future.delayed(Duration(seconds: 10));
-
+      if (isClosed) return;
       try {
         // Step 1: who does this user have chats with?
         final chatPartnerIds = await _chatsService.getChatPartnerIds(
           currentUid,
         );
+        if (isClosed) return;
 
         if (chatPartnerIds.isEmpty) {
           emit(ActiveUsersLoaded([]));
@@ -53,6 +51,7 @@ class ActiveCubit extends Cubit<ActiveState> {
         // Step 3: batch-fetch Firestore profiles
         final uids = relevantPresence.map((p) => p.uid).toList();
         final users = await _firestoreService.getUsersByIds(uids);
+        if (isClosed) return;
 
         // Step 4: merge presence onto profiles
         final merged = users.map((user) {

@@ -23,7 +23,11 @@ class AppDarkTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppDarkColors.colorScheme.surfaceContainerHighest,
-      errorStyle: TextStyle(color: AppDarkColors.colorScheme.onError),
+      errorStyle: TextStyle(
+        color: AppDarkColors.colorScheme.onError,
+        fontFamily: 'Poppins',
+        fontSize: 12,
+      ),
 
       hintStyle: TextStyle(
         // color: scheme.onSurface,
@@ -70,20 +74,20 @@ class AppDarkTheme {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         color: AppDarkColors.textPrimary,
-        fontSize: 36,
+        fontSize: 34,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w900,
         letterSpacing: 1.5,
       ),
       headlineLarge: TextStyle(
         color: AppDarkColors.textPrimary,
-        fontSize: 28,
+        fontSize: 26,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w700,
       ),
       headlineMedium: TextStyle(
         color: AppDarkColors.textPrimary,
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500,
       ),
@@ -91,39 +95,39 @@ class AppDarkTheme {
         color: AppDarkColors.textPrimary,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
-        fontSize: 14,
+        fontSize: 12,
       ),
       titleLarge: TextStyle(
         color: AppDarkColors.textPrimary,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w700,
       ),
       titleMedium: TextStyle(
         color: AppDarkColors.textPrimary,
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.bold,
       ),
       labelSmall: TextStyle(
         color: AppDarkColors.textPrimary.withValues(alpha: 0.5),
         fontFamily: 'Poppins',
-        fontSize: 13,
+        fontSize: 12,
       ),
       labelMedium: TextStyle(
         color: AppColors.primary,
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Poppins',
       ),
-      bodyLarge:  TextStyle(
+      bodyLarge: TextStyle(
         color: AppDarkColors.textPrimary.withValues(alpha: 0.7),
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'Poppins',
-        height: 1.4
+        height: 1.4,
       ),
       bodyMedium: TextStyle(
         color: AppDarkColors.textPrimary.withValues(alpha: 0.7),
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: 'Poppins',
       ),
       bodySmall: TextStyle(

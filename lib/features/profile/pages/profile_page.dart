@@ -20,7 +20,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   late final TextEditingController _usernameController;
   bool _isEditingUsername = false;
-  String? errorMessage = "";
+  String? errorMessage;
 
   @override
   void initState() {
@@ -106,12 +106,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                     horizontal: 12,
                                   ),
                                   filled: true,
-                                  // fillColor: isDark
-                                  //     ? Colors.white.withValues(alpha: 0.06)
-                                  //     : Colors.black.withValues(alpha: 0.04),
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(
+                                      color: context.scheme.outline,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(
+                                      color: context.scheme.outline,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(
+                                      color: context.scheme.outline,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(
+                                      color: context.scheme.outline,
+                                      width: 1,
+                                    ),
                                   ),
                                 ),
                               )
@@ -129,9 +150,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           ? Row(
                               children: [
                                 IconButton(
-                                  onPressed: () => setState(
-                                    () => _isEditingUsername = false,
-                                  ),
+                                  onPressed: () => setState(() {
+                                    _isEditingUsername = false;
+                                    errorMessage = null;
+                                    _usernameController.text =
+                                        context
+                                            .read<UserCubit>()
+                                            .state
+                                            .user
+                                            ?.username ??
+                                        "";
+                                  }),
                                   icon: Icon(
                                     Icons.close_rounded,
                                     color: context.scheme.secondary,
@@ -188,7 +217,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Appearance', style: context.textTheme.titleMedium),
+                        Text(
+                          'Appearance',
+                          style: context.textTheme.titleMedium,
+                        ),
                         Text(
                           context.isDark ? 'Dark mode' : 'Light mode',
                           style: context.textTheme.labelSmall,

@@ -18,10 +18,10 @@ class MessagesCubit extends Cubit<MessagesState> {
     emit(MessagesLoading());
     _messagesSub?.cancel();
 
-    _messagesSub = _messagesService.getMessages(chatId).listen(
-      (messages) => emit(MessagesLoaded(messages)),
-      onError: (e) => emit(MessagesError(e.toString())),
-    );
+    _messagesSub = _messagesService.getMessages(chatId).listen((messages) {
+      if (isClosed) return;
+      emit(MessagesLoaded(messages));
+    }, onError: (e) => emit(MessagesError(e.toString())));
   }
 
   Future<void> sendMessage({
@@ -46,9 +46,7 @@ class MessagesCubit extends Cubit<MessagesState> {
           senderId: userId,
         ),
       );
-      // ✅ Stream handles the UI update automatically
     } catch (e) {
-      // ✅ Messages stay visible, error is surfaced separately
       emit(MessageSendError(messages: currentMessages, error: e.toString()));
     }
   }

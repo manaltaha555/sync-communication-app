@@ -14,8 +14,12 @@ class UserCubit extends Cubit<UserState> {
   final _userService = UserService.instance;
 
   Future<void> loadUser() async {
+        if (isClosed) return;
+
     emit(state.copyWith(status: UserStatus.loading));
     final user = await _userService.getUser();
+        if (isClosed) return;
+
     emit(
       state.copyWith(
         user: user,
@@ -27,6 +31,8 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> saveUser(UserModel userModel) async {
     await _userService.saveUser(userModel);
+        if (isClosed) return;
+
     emit(
       state.copyWith(
         user: userModel,
@@ -39,6 +45,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> updateUsername(String username) async {
     final uid = state.user?.uid;
     if (uid == null) return;
+    if (isClosed) return;
 
     emit(
       state.copyWith(
@@ -52,6 +59,8 @@ class UserCubit extends Cubit<UserState> {
         username: username,
       );
       await _userService.saveUser(updated);
+          if (isClosed) return;
+
       emit(
         state.copyWith(
           user: updated,
@@ -60,6 +69,8 @@ class UserCubit extends Cubit<UserState> {
         ),
       );
     } catch (e) {
+          if (isClosed) return;
+
       emit(
         state.copyWith(
           status: UserStatus.failure,
@@ -73,6 +84,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> updateEmoji(String emoji) async {
     final uid = state.user?.uid;
     if (uid == null) return;
+    if (isClosed) return;
 
     emit(
       state.copyWith(
@@ -89,6 +101,8 @@ class UserCubit extends Cubit<UserState> {
       LoggerService.logInfo("firebase updated");
       await _userService.saveUser(updated);
       LoggerService.logInfo("hive updated");
+          if (isClosed) return;
+
       emit(
         state.copyWith(
           user: updated,
@@ -97,6 +111,8 @@ class UserCubit extends Cubit<UserState> {
         ),
       );
     } catch (e) {
+          if (isClosed) return;
+
       emit(
         state.copyWith(status: UserStatus.failure, errorMessage: e.toString()),
       );
@@ -105,6 +121,7 @@ class UserCubit extends Cubit<UserState> {
 
   void clearUser() {
     _userService.clearUser();
+    if (isClosed) return;
     emit(const UserState());
   }
 }

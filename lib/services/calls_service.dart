@@ -10,7 +10,9 @@ class CallsService {
 
   Future<void> addCall(CallTile callTile) async {
     try {
-      await _firestore.collection('calls').add(callTile.toMap());
+      final docRef = FirebaseFirestore.instance.collection('calls').doc();
+
+      await docRef.set(callTile.toMap(docRef.id));
     } catch (e, stackTrace) {
       LoggerService.logError("Error adding call to Firestore", e, stackTrace);
       throw "Something went wrong";
@@ -23,6 +25,7 @@ class CallsService {
           .collection('calls')
           .where('participants', arrayContains: userId)
           .orderBy('timestamp', descending: true)
+          .limit(20)
           .get();
 
       return querySnapshot.docs
