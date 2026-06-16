@@ -63,14 +63,10 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Initializes Firebase and call infrastructure
 - Redirects users to the onboarding screen or main app based on login state
 
-![Splash Screen Screenshot](ADD_SCREENSHOT_HERE)
-
 ### Get Started Screen
 
 - Presents a branded entry experience for new users
 - Navigates to login when the user is ready to begin
-
-![Get Started Screenshot](ADD_SCREENSHOT_HERE)
 
 ### Login Screen
 
@@ -78,22 +74,16 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Displays Google Sign-In option
 - Authenticates users via Firebase Auth
 
-![Login Screen Screenshot](ADD_SCREENSHOT_HERE)
-
 ### Signup Screen
 
 - Allows users to register with username, email, and password
 - Supports password confirmation validation
 - Initiates a user session and navigates to the main app after successful signup
 
-![Signup Screen Screenshot](ADD_SCREENSHOT_HERE)
-
 ### Main Navigation / Home Tab
 
 - Provides bottom navigation between Home, Calls, and Profile tabs
 - Manages tab state through `BottomNavBarCubit`
-
-![Main Navigation Screenshot](ADD_SCREENSHOT_HERE)
 
 ### Home Screen
 
@@ -101,15 +91,11 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Supports pull-to-refresh for chat and presence data
 - Navigates to chat detail screens
 
-![Home Screen Screenshot](ADD_SCREENSHOT_HERE)
-
 ### Search Screen
 
 - Enables searching for users by name
 - Displays matching results and lets users open chat sessions
 - Uses debounced search queries for smooth UX
-
-![Search Screen Screenshot](ADD_SCREENSHOT_HERE)
 
 ### Chat Screen
 
@@ -117,14 +103,10 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Supports sending new text messages
 - Includes voice and video call buttons for live communication
 
-![Chat Screen Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_chat.png)
-
 ### Calls Screen
 
 - Lists recent call history with incoming/outgoing indicators
 - Supports re-initiating calls through the call dialog
-
-![Calls Screen Screenshot](ADD_SCREENSHOT_HERE)
 
 ### Profile Screen
 
@@ -132,7 +114,16 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Includes theme toggle and account settings shortcuts
 - Provides logout functionality
 
-![Profile Screen Screenshot](ADD_SCREENSHOT_HERE)
+### UI Preview
+
+![Chat Screen Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_chat.png)
+
+![Dark_Theme Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_dark.png)
+
+![Light_Theme Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_light.png)
+
+![Profile Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_pick.png)
+
 
 ## API / Backend Integration
 
