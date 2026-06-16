@@ -117,7 +117,7 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 - Supports sending new text messages
 - Includes voice and video call buttons for live communication
 
-![Chat Screen Screenshot](ADD_SCREENSHOT_HERE)
+![Chat Screen Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_chat.png)
 
 ### Calls Screen
 
