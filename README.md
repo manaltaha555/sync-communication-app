@@ -124,6 +124,12 @@ Sync Communication App uses the BLoC pattern powered by `flutter_bloc` and `equa
 
 ![Profile Screenshot](https://github.com/manaltaha555/portfolio-flutter/blob/master/assets/images/sync_pick.png)
 
+## Demo Video
+
+Watch the full demo of Sync Communication App to see the main features and user flows in action, including authentication, real-time chat, user presence, voice/video calls, navigation, and profile management.
+
+[▶️ Watch the Demo Video](https://drive.google.com/file/d/1I1w2XDVTaflil3ZDP19e4siUcaeSNGYj/view?usp=sharing)
+
 
 ## API / Backend Integration
 
